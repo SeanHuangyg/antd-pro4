@@ -55,13 +55,11 @@ if (pwa) {
           notification.close(key);
           reloadSW();
         }}
-      >
-        {'app.pwa.serviceworker.updated.ok'}
-      </Button>
+      >'updated.ok'</Button>
     );
     notification.open({
-      message: 'app.pwa.serviceworker.updated',
-      description: 'app.pwa.serviceworker.updated.hint',
+      message: 'updated',
+      description: 'updated.hint',
       btn,
       key,
       onClose: async () => {},

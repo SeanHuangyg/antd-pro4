@@ -58,17 +58,17 @@ const Login = (props) => {
         <Tabs activeKey={type} onChange={setType}>
           <Tabs.TabPane
             key="account"
-            tab={'账户密码登录'}
+            tab="账户密码登录"
           />
           <Tabs.TabPane
             key="mobile"
-            tab={'手机号登录'}
+            tab="手机号登录"
           />
         </Tabs>
 
         {status === 'error' && loginType === 'account' && !submitting && (
           <LoginMessage
-            content={'账户或密码错误（admin/admin,user/user)'}
+            content="账户或密码错误（admin/admin,user/user)"
           />
         )}
         {type === 'account' && (
@@ -79,7 +79,7 @@ const Login = (props) => {
                 size: 'large',
                 prefix: <UserOutlined className={styles.prefixIcon} />,
               }}
-              placeholder={'用户名: admin or user'}
+              placeholder="用户名: admin or user"
               rules={[
                 {
                   required: true,
@@ -93,7 +93,7 @@ const Login = (props) => {
                 size: 'large',
                 prefix: <LockTwoTone className={styles.prefixIcon} />,
               }}
-              placeholder={'密码: admin or user'}
+              placeholder="密码: admin or user"
               rules={[
                 {
                   required: true,
@@ -115,7 +115,7 @@ const Login = (props) => {
                 prefix: <MobileTwoTone className={styles.prefixIcon} />,
               }}
               name="mobile"
-              placeholder={'手机号'}
+              placeholder="手机号"
               rules={[
                 {
                   required: true,
@@ -135,7 +135,7 @@ const Login = (props) => {
               captchaProps={{
                 size: 'large',
               }}
-              placeholder={'请输入验证码'}
+              placeholder="请输入验证码"
               captchaTextRender={(timing, count) => (timing
                 ? `${count} ${'获取验证码'}`
                 : '获取验证码')
