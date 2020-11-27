@@ -266,7 +266,9 @@ const noMatch = null; // view without permission
 <Authorized authority="admin" noMatch={noMatch}>
   ...views with permissions
 </Authorized>
-// authority： 谁能看， noMatch：当没有权限时看到什么
+// authority： 谁能看 
+// 多个权限时： authority={['admin', 'user']}
+// noMatch：当没有权限时看到什么
 ```
 
 ### 统一表格 使用ProTable - 高级表格

@@ -24,6 +24,17 @@ const LoginLayout = (props) => {
     breadcrumb,
     ...props,
   });
+  const links = [{
+    key: '这是底部1',
+    title: '这是底部1',
+    href: 'https://www.baidu.com/',
+    blankTarget: true,
+  }, {
+    key: '这是底部2',
+    title: '这是底部2',
+    href: 'https://www.baidu.com/',
+    blankTarget: true,
+  }];
   return (
     <HelmetProvider>
       <Helmet>
@@ -40,11 +51,10 @@ const LoginLayout = (props) => {
                 <span className={styles.title}>Ant Design</span>
               </Link>
             </div>
-            <div className={styles.desc}>Ant Design 是西湖区最具影响力的 Web 设计规范</div>
           </div>
           {children}
         </div>
-        <DefaultFooter />
+        <DefaultFooter links={links} copyright="这是右边描述！" />
       </div>
     </HelmetProvider>
   );
