@@ -74,14 +74,12 @@ npm run lint:fix
 
 ## 开发要求
 
-1、请求使用项目封装的request。
-2、代码规范开启本地eslint和Prettier进行代码格式化。
-3、单纯的业务组件必须包含models和services，不需要当放入src/models、src/services。
-4、表单提交必须防重复、数据加载必须loading。
+1、请求使用项目封装的 request。 2、代码规范开启本地 eslint 和 Prettier 进行代码格式化。 3、单纯的业务组件必须包含 models 和 services，不需要当放入 src/models、src/services。 4、表单提交必须防重复、数据加载必须 loading。
 
 ## Dva.js
 
 ### Model
+
 在 umi 项目中，你可以使用 dva 来处理数据流，以响应一些复杂的交互操作。这些处理数据流的文件统一放在 models 文件夹下，每一个文件默认导出一个对象，里面包含数据和处理数据的方法，通常我们称之为 model 。一个 model 文件的结构一般是这样的：
 
 ```bash
@@ -103,6 +101,7 @@ export default {
 ```
 
 ### Reducer
+
 每一个 reducer 都是一个普通函数，接受 state 和 action 作为参数，即：(state, action) => state ，你可以在函数中更改旧的 state，返回新的 state。
 
 ```bash
@@ -114,6 +113,7 @@ reducers: {
 ```
 
 ### Effect
+
 每一个 effect 都是一个 生成器函数 ，你可以在这里获取你需要的数据，例如向服务器发起一个请求、或是获取其他 model 里的 state 。为了明确分工，你无法在 effect 中直接修改 state ，但你可以通过 put 方法 调用 reducer 来修改 state。
 
 ```bash
@@ -128,6 +128,7 @@ state:{
 ```
 
 #### Effect-select
+
 此方法用于获取当前或其他 model 的 state。
 
 ```bash
@@ -135,6 +136,7 @@ const data = yield select(states => states[namespace]);
 ```
 
 #### Effect-call
+
 此方法用于执行一个异步函数，可以理解为等待这个函数执行结束。项目中常用于发送 http 请求，等待服务端响应数据。
 
 ```bash
@@ -142,13 +144,15 @@ const data = yield call(doSomethingFunc, parameter);
 ```
 
 #### Effect-put
-此方法用于触发一个 action，这个 action 既可以是一个 reducer 也可以是一个 effect 
+
+此方法用于触发一个 action，这个 action 既可以是一个 reducer 也可以是一个 effect
 
 ```bash
 yield put({ type: 'reducerName', payload: { page } });
 ```
 
 ### Subscription
+
 subscription 用于订阅一个数据源，根据需要使用 dispatch 触发相应的 action。数据源可以是当前的时间、服务器的 websocket 连接、keyboard 输入、geolocation 变化、history 路由变化等等。 项目中常用于页面初始化数据的自动请求，如：
 
 ```bash
@@ -165,9 +169,11 @@ subscriptions: {
 ```
 
 ### dispatch
+
 类似 effect 中的 put 方法，你可以在 subscription 的参数、或是一个已经 connect 过的组件的 props 中拿到。
 
 ### connect
+
 通过此方法在你的组件中获取到指定 model 的 state 数据
 
 ```bash
@@ -186,7 +192,7 @@ function App({ user, dispatch }) {
 export default connect(({ user }) => ({ user }))(App);
 ```
 
-如果使用es7的装饰器则为：
+如果使用 es7 的装饰器则为：
 
 ```bash
 import { connect } from 'dva';
@@ -208,7 +214,8 @@ export default App;
 ## 项目开发中
 
 ### 创建页面
-page下：
+
+page 下：
 
 ```bash
 umi g page item
@@ -216,7 +223,8 @@ umi g page item
 // create src/pages/item.css
 // ✔  success
 ```
-page/file下:
+
+page/file 下:
 
 ```bash
 umi g page item/file --less
@@ -225,17 +233,16 @@ umi g page item/file --less
 // ✔  success
 ```
 
-### 关于css
+### 关于 css
 
-1、命名：
-类名使用小写字母，以中划线分隔；
-id采用驼峰式命名。
+1、命名：类名使用小写字母，以中划线分隔； id 采用驼峰式命名。
 
-2、jsx中使用：
+2、jsx 中使用：
 
 ```bash
 className={styles.***}
 ```
+
 or
 
 ```bash
@@ -248,7 +255,7 @@ className={styles['word-word']}
 className={`${styles.className1} ${styles.className2}`}
 ```
 
-3、修改antd默认样式：使用:global
+3、修改 antd 默认样式：使用:global
 
 ```bash
 // 注：若想在某个文件中覆盖 antd 样式，请加上一个类似 .override-ant-btn 的类包裹住 global 修饰的名称，以避免全局样式声明分散在项目各处
@@ -256,6 +263,7 @@ className={`${styles.className1} ${styles.className2}`}
 ```
 
 ### 关于组织权限
+
 框架中对组件 export 的 RenderAuthorized 函数进行了基本封装，默认传入当前的权限（mock 数据），因此在脚手架中使用时，无需再关注当前权限。
 
 ```bash
@@ -266,16 +274,17 @@ const noMatch = null; // view without permission
 <Authorized authority="admin" noMatch={noMatch}>
   ...views with permissions
 </Authorized>
-// authority： 谁能看 
+// authority： 谁能看
 // 多个权限时： authority={['admin', 'user']}
 // noMatch：当没有权限时看到什么
 ```
 
-### 统一表格 使用ProTable - 高级表格
+### 统一表格 使用 Procomponents-ProTable （高级表格）
 
 依托于 ProForm 的能力，ProForm 拥有多种形态，可以切换查询表单类型，设置变形成为一个简单的 Form 表单，执行新建等功能
 
 #### ProTable-API https://procomponents.ant.design/components/table#api
+
 ProTable 在 antd 的 Table 上进行了一层封装，支持了一些预设，并且封装了一些行为。这里只列出与 antd Table 不同的 api。
 
 request
@@ -314,3 +323,7 @@ request 是 ProTable 最重要的 API，request 会接收一个对象。对象�
   }}
 />
 ```
+
+## 附：
+
+UI-antd@4.0+: https://ant.design/index-cn; Umi@2+: https://v2.umijs.org/zh/; antd-pro@4.0: +https://pro.ant.design/; Procomponents: https://procomponents.ant.design/components; (ProTable、Layout)
