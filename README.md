@@ -75,6 +75,7 @@ npm run lint:fix
 ## 开发要求
 
 1、请求使用项目封装的 request。 2、代码规范开启本地 eslint 和 Prettier 进行代码格式化。 3、单纯的业务组件必须包含 models 和 services，不需要当放入 src/models、src/services。 4、表单提交必须防重复、数据加载必须 loading。
+5、模块下有自己使用的组件时，在自己模块下新建components文件夹，组件命名：使用大驼峰，如 MyComponent.js。
 
 ## Dva.js
 
@@ -323,6 +324,10 @@ request 是 ProTable 最重要的 API，request 会接收一个对象。对象�
   }}
 />
 ```
+
+### 模块下Table统一columns
+columns文件: src/pages/ListTableList/components/TableColumns.jsx
+使用: src/pages/ListTableList/index.jsx--->Line 84-105
 
 ## 附：
 
